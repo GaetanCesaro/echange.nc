@@ -1,0 +1,19 @@
+.nav.navbar-nav { 
+    font-size: 15px; 
+}
+
+.navbar-form { 
+    padding: 0px; 
+}
+
+li > a.active { 
+    color: #F97924; 
+}
+
+.search-input { 
+    max-width: 150px;
+}
+
+/* 
+@media (max-width: 1200px) { #searchForm {display} }
+*/
