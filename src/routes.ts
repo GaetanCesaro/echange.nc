@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { Error404Component } from "./app/shared/errors/404.component";
+import { HomeComponent } from './app/home/home.component';
 /*
 import {
     EventsListComponent,
@@ -34,7 +35,11 @@ export const appRoutes: Routes = [
     },
     */
     /*{ path: "user", loadChildren: "./modules/user/user.module#UserModule" }*/
+    {
+        path: "home",
+        component: HomeComponent
+    },
     { path: "404", component: Error404Component },
-    { path: "", redirectTo: "/", pathMatch: "full" } /* /events */
+    { path: "", redirectTo: "/home", pathMatch: "full" }
 
 ];
