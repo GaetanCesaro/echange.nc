@@ -8,7 +8,7 @@
 
 .navbar-light .navbar-nav .nav-link {
     color: #27A9E3;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 li > a.active { 
