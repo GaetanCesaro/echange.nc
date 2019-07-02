@@ -18,6 +18,8 @@ import {
   Error404Component,
   SearchBarComponent
 } from './shared/index';
+import { ServiceListComponent } from './home/service-list/service-list.component';
+import { ServiceDetailsComponent } from './home/service-details/service-details.component';
 
 
 
@@ -27,7 +29,9 @@ import {
     HomeComponent,
     NavbarComponent,
     Error404Component,
-    SearchBarComponent
+    SearchBarComponent,
+    ServiceListComponent,
+    ServiceDetailsComponent
   ],
   imports: [
     BrowserModule,
