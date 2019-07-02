@@ -1,0 +1,11 @@
+.search-bar {
+    background-color: rgb(95, 173, 209);
+}
+
+.container {
+    width: 70vw;
+}
+
+.row {
+    min-height: 5rem;
+}
