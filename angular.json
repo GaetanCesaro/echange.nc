@@ -23,9 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/bootstrap-overrides.min.css"
+              "src/styles/styles.scss",
+              "src/styles/bootstrap-overrides.min.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -83,9 +88,14 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss",
-              "src/bootstrap-overrides.min.css"
+              "src/styles/styles.scss",
+              "src/styles/bootstrap-overrides.min.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": [],
             "assets": [
               "src/favicon.ico",
