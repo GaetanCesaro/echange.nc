@@ -8,6 +8,11 @@
     padding: 0px;
 }
 
+.navbar-brand {
+  color: $grey-700;
+  font-weight: bold;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: $primary;
     font-weight: 600;
