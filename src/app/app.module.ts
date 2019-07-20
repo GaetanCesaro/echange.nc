@@ -18,8 +18,13 @@ import {
   Error404Component,
   SearchBarComponent
 } from './shared/index';
-import { ServiceListComponent } from './home/service-list/service-list.component';
-import { ServiceDetailsComponent } from './home/service-details/service-details.component';
+
+import {
+  AdListComponent,
+  AdDetailsComponent,
+  AdComponent,
+  AdService
+} from './home/ad/index';
 
 
 
@@ -30,15 +35,18 @@ import { ServiceDetailsComponent } from './home/service-details/service-details.
     NavbarComponent,
     Error404Component,
     SearchBarComponent,
-    ServiceListComponent,
-    ServiceDetailsComponent
+    AdListComponent,
+    AdDetailsComponent,
+    AdComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    AdService
+  ],
   bootstrap: [EchangeAppComponent]
 })
 export class AppModule {
