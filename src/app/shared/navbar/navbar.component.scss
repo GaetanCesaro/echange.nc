@@ -1,0 +1,26 @@
+@import '../../../variables.scss';
+
+.nav.navbar-nav {
+    font-size: 15px;
+}
+
+.navbar-form {
+    padding: 0px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: $primary;
+    font-weight: 600;
+}
+
+li > a.active {
+    color: $secondary;
+}
+
+.search-input {
+    max-width: 150px;
+}
+
+/*
+@media (max-width: 1200px) { #searchForm {display} }
+*/

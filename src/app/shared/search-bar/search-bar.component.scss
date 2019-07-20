@@ -1,5 +1,7 @@
+@import '../../../variables.scss';
+
 .search-bar {
-    background-color: rgb(184, 230, 252);
+    background-color: $primary;
 }
 
 .container {
