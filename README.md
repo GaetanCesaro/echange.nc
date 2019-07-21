@@ -1,20 +1,37 @@
-# Echange
+# Echange.nc
+POC d'application web d'échange en NC
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
+Projet généré via [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
 
-## Development server
+## Développement sur serveur local
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Lancer `npm install` pour installer les packages node nécessaires
+2. Lancer `npm start` pour démarrer l'application
+3. Naviguer vers `http://localhost:4200/`
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+NB : L'application se rafraichira ensuite automatiquement à chaque modification d'une des sources (hors config)
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Build local 
+Lancer `ng build` pour compiler le projet. Les fichiers compilés sont stockés dans le répertoire `dist/`.
 
-## Running unit tests
+### Build avant déploiement 
+Lancer `ng build --prod` si l'objectif est de déployer sur un serveur distant.
+
+## Déploiement Firebase
+
+1. Lancer `ng build --prod` pour effectuer un build de déploiement
+2. Lancer `firebase deploy`
+3. L'application déployée est ensuite accessible sur [https://echangenc.web.app/](https://echangenc.web.app/)
+
+NB : La configuration est dans le fichier [firebase.json](firebase.json) et l'initialisation référencée dans le [module principal](src/app/echange-app.component.ts).
+
+## Code scafolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Tests unitaires
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
