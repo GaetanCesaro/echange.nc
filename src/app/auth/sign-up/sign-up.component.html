@@ -1,0 +1,53 @@
+<div class="container my-4">
+    <h1>Ajout d'un compte</h1>
+    <hr />
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
+      <div class="form-group">
+        <label for="email">Adresse Mail :</label>
+        <em *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.touched || mouseoverLogin)">
+          Vérifiez votre adresse mail
+        </em>
+        <input (ngModel)="(email)" name="email" id="email" type="email" class="form-control"
+          placeholder="Adresse Mail..." required/>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe :</label>
+        <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseoverLogin)">
+          Obligatoire
+        </em>
+        <input (ngModel)="(password)" name="password" id="password" type="password" class="form-control"
+          placeholder="Mot de passe..." required/>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Répéter le mot de passe :</label>
+        <em *ngIf="loginForm.controls.passwordBis?.invalid && (loginForm.controls.passwordBis?.touched || mouseoverLogin)">
+          Obligatoire
+        </em>
+        <input (ngModel)="(passwordBis)" name="passwordBis" id="passwordBis" type="password" class="form-control"
+          placeholder="Mot de passe..." required/>
+      </div>
+
+      <div class="form-group">
+        <a href="/auth">Déjà un compte ? Se connecter !</a>
+      </div>
+
+      <div>
+        <button type="button" (click)="cancel()" class="btn btn-default">
+          Annuler
+        </button>
+        <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false" >
+          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">
+            Créer un compte
+          </button>
+        </span>
+      </div>
+
+    </form>
+
+    <br/>
+    <div *ngIf="signInInvalid" class="alert alert-danger">Informations de création de compte invalides</div>
+  </div>
+

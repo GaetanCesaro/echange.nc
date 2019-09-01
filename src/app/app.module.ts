@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { appRoutes } from "src/routes";
@@ -26,6 +27,11 @@ import {
   AdService
 } from './home/ad/index';
 
+import {
+  AuthComponent,
+  SignInComponent,
+  SignUpComponent
+} from './auth/index'
 
 
 @NgModule({
@@ -37,10 +43,14 @@ import {
     SearchBarComponent,
     AdListComponent,
     AdDetailsComponent,
-    AdComponent
+    AdComponent,
+    SignInComponent,
+    SignUpComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     FontAwesomeModule,
     RouterModule.forRoot(appRoutes)
   ],
