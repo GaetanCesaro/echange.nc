@@ -4,7 +4,7 @@
 
   <form
     #loginForm="ngForm"
-    (ngSubmit)="login(loginForm.value)"
+    (ngSubmit)="signup(loginForm.value)"
     autocomplete="off"
   >
     <div class="form-group">
@@ -87,6 +87,7 @@
             type="submit"
             [disabled]="!loginForm.valid"
             class="btn btn-primary"
+            (click)="addUser()"
           >
             Créer un compte
           </button>
