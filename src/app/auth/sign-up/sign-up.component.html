@@ -7,6 +7,21 @@
     (ngSubmit)="signup(loginForm.value)"
     autocomplete="off"
   >
+
+    <div class="form-group">
+      <label for="lastname">Nom :</label>
+      <em *ngIf="loginForm.controls.lastname?.invalid && (loginForm.controls.lastname?.touched || mouseoverLogin)">
+        Vérifiez votre nom
+      </em>
+      <input (ngModel)="(lastname)" name="lastname" id="lastname" type="text" class="form-control" placeholder="Nom..." required/>
+    </div>
+    <div class="form-group">
+      <label for="firstname">Prénom :</label>
+      <em *ngIf="loginForm.controls.firstname?.invalid && (loginForm.controls.firstname?.touched || mouseoverLogin)">
+        Vérifiez votre prénom
+      </em>
+      <input (ngModel)="(firstname)" name="firstname" id="firstname" type="text" class="form-control" placeholder="Prénom..." required/>
+    </div>
     <div class="form-group">
       <label for="email">Adresse Mail :</label>
       <em

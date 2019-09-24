@@ -8,9 +8,6 @@ import * as firebase from "firebase";
   styleUrls: ["./sign-up.component.scss"]
 })
 export class SignUpComponent {
-  email: string;
-  password: string;
-  passwordBis: string;
   mouseoverLogin: boolean;
   signUpInvalid = false;
   errorMessage: string;
@@ -18,8 +15,6 @@ export class SignUpComponent {
   constructor(private router: Router) {}
 
   signup(formValues) {
-    var email = formValues.email;
-
     firebase
       .auth()
       .createUserWithEmailAndPassword(formValues.email, formValues.password)
@@ -31,9 +26,7 @@ export class SignUpComponent {
         this.errorMessage = error.message;
         this.signUpInvalid = true;
       })
-      .then(function success() {
-        return this.addUser(email);
-      })
+      .then(userCredential => this.addUser(userCredential, formValues))
       .finally(function() {
         this.router.navigate(["/home"]);
       });
@@ -43,22 +36,25 @@ export class SignUpComponent {
     this.router.navigate(["/home"]);
   }
 
-  addUser(email) {
-    var db = firebase.firestore();
+  addUser(userCredential: firebase.auth.UserCredential, formValues) {
+    if (userCredential != null) {
+      var db = firebase.firestore();
 
-    console.log({ email });
+      console.log({ userCredential });
+      console.log({ formValues });
 
-    db.collection("users")
-      .add({
-        firstname: "Jean",
-        lastname: "Louis",
-        email: email
-      })
-      .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-      })
-      .catch(function(error) {
-        console.error("Error adding document: ", error);
-      });
+      db.collection("users")
+        .add({
+          firstname: formValues.firstname,
+          lastname: formValues.lastname,
+          email: userCredential.user.email
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    }
   }
 }
