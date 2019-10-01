@@ -1,118 +1,73 @@
 <div class="container my-4 mx-auto">
   <h1>Création du compte</h1>
-  <hr />
+  <hr/>
 
-  <form
-    #loginForm="ngForm"
-    (ngSubmit)="signup(loginForm.value)"
-    autocomplete="off"
-  >
-
-    <div class="form-group">
-      <label for="lastname">Nom :</label>
-      <em *ngIf="loginForm.controls.lastname?.invalid && (loginForm.controls.lastname?.touched || mouseoverLogin)">
-        Vérifiez votre nom
-      </em>
-      <input (ngModel)="(lastname)" name="lastname" id="lastname" type="text" class="form-control" placeholder="Nom..." required/>
-    </div>
-    <div class="form-group">
-      <label for="firstname">Prénom :</label>
-      <em *ngIf="loginForm.controls.firstname?.invalid && (loginForm.controls.firstname?.touched || mouseoverLogin)">
-        Vérifiez votre prénom
-      </em>
-      <input (ngModel)="(firstname)" name="firstname" id="firstname" type="text" class="form-control" placeholder="Prénom..." required/>
-    </div>
-    <div class="form-group">
-      <label for="email">Adresse Mail :</label>
-      <em
-        *ngIf="
-          loginForm.controls.email?.invalid &&
-          (loginForm.controls.email?.touched || mouseoverLogin)
-        "
-      >
-        Vérifiez votre adresse mail
-      </em>
-      <input
-        (ngModel)="(email)"
-        name="email"
-        id="email"
-        type="email"
-        class="form-control"
-        placeholder="Adresse Mail..."
-        required
-      />
+  <form #loginForm="ngForm" (ngSubmit)="signup(loginForm)" class="needs-validation">
+    <div class="form-row">
+      <div class="col-sm-6 col-md-6 mb-3">
+        <label for="lastname">Nom :</label>
+        <input (ngModel)="(lastname)" name="lastname" id="lastname" type="text" class="form-control" placeholder="Nom..." required/>
+        <div *ngIf="loginForm.controls.lastname?.invalid && (loginForm.controls.lastname?.touched || mouseoverLogin)" class="text-error">
+          Vérifiez votre nom
+        </div>
+      </div>
+    
+      <div class="col-sm-6 col-md-6 mb-3">
+        <label for="firstname">Prénom :</label>
+        <input (ngModel)="(firstname)" name="firstname" id="firstname" type="text" class="form-control" placeholder="Prénom..." required/>
+        <div *ngIf="loginForm.controls.firstname?.invalid && (loginForm.controls.firstname?.touched || mouseoverLogin)" class="text-error">
+          Vérifiez votre prénom
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="password">Mot de passe :</label>
-      <em
-        *ngIf="
-          loginForm.controls.password?.invalid &&
-          (loginForm.controls.password?.touched || mouseoverLogin)
-        "
-      >
-        Obligatoire
-      </em>
-      <input
-        (ngModel)="(password)"
-        name="password"
-        id="password"
-        type="password"
-        class="form-control"
-        placeholder="Mot de passe..."
-        required
-      />
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="email">Adresse Mail : </label>
+        <input (ngModel)="(email)" name="email" id="email" type="email" class="form-control" placeholder="Adresse Mail..." required>
+        <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.touched || mouseoverLogin)" class="text-error">
+          Vérifiez votre adresse email
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="password">Répéter le mot de passe :</label>
-      <em
-        *ngIf="
-          loginForm.controls.passwordBis?.invalid &&
-          (loginForm.controls.passwordBis?.touched || mouseoverLogin)
-        "
-      >
-        Obligatoire
-      </em>
-      <input
-        (ngModel)="(passwordBis)"
-        name="passwordBis"
-        id="passwordBis"
-        type="password"
-        class="form-control"
-        placeholder="Mot de passe..."
-        required
-      />
+    <div class="form-row">
+      <div class="col-sm-6 col-md-6 mb-3">
+        <label for="password">Mot de passe :</label>
+        <input (ngModel)="(password)" name="password" id="password" type="password" class="form-control" placeholder="Mot de passe..." required />
+        <div class="text-error" *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseoverLogin)">
+          Mot de passe incorrect
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 mb-3">
+        <label for="password">Répéter le mot de passe : </label>
+        <input (ngModel)="(passwordBis)" name="passwordBis" id="passwordBis" type="password" class="form-control" placeholder="Mot de passe..." required />
+        <div *ngIf="loginForm.controls.passwordBis?.invalid && (loginForm.controls.passwordBis?.touched || mouseoverLogin)">
+          Mot de passe incorrect
+        </div>
+      </div>
     </div>
 
-    <div>
-      <a [routerLink]="['/auth']" class="btn btn-primary"
-        >Déjà un compte ? Se connecter !</a
-      >
+    <div class="form-row">
+      <div class="col-6 mb-3">
+        <a [routerLink]="['/auth']" class="btn btn-primary">Déjà un compte ? Se connecter !</a>
+      </div>
 
-      <span class="float-right">
-        <button type="button" (click)="cancel()" class="btn btn-default">
-          Annuler
-        </button>
-        <span
-          (mouseenter)="mouseoverLogin = true"
-          (mouseleave)="mouseoverLogin = false"
-        >
-          <button
-            type="submit"
-            [disabled]="!loginForm.valid"
-            class="btn btn-primary"
-            (click)="addUser()"
-          >
-            Créer un compte
-          </button>
+      <div class="col-6 mb-3">
+        <span class="float-right">
+          <button type="button" (click)="cancel()" class="btn btn-default">Annuler</button>
+          <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false">
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary" (click)="addUser()">Créer un compte</button>
+          </span>
         </span>
-      </span>
+      </div>
     </div>
   </form>
 
-  <br />
+  <br/>
+
   <div *ngIf="signUpInvalid" class="alert alert-danger">
-    Informations de création de compte invalides
+    {{errorMessage}}
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
 
@@ -14,21 +15,45 @@ export class SignUpComponent {
 
   constructor(private router: Router) {}
 
-  signup(formValues) {
+  processSignupError(error, loginForm: NgForm) {
+    this.signUpInvalid = true;
+
+    console.log("ERROR - Firebase createUserWithEmailAndPassword() - " + error.code);
+
+    switch(error.code) {
+      case "auth/email-already-in-use":
+        loginForm.controls['email'].setErrors({'incorrect': true});
+        this.errorMessage = "L'email renseigné est déjà utilisé";
+        break;
+
+      case "auth/invalid-email":
+        loginForm.controls['email'].setErrors({'incorrect': true});
+        this.errorMessage = "L'email renseigné est invalide";
+        break;
+
+      case "auth/weak-password":
+        loginForm.controls['password'].setErrors({'incorrect': true});
+        this.errorMessage = "Le mot de passe renseigné n'est pas assez sécurisé";
+        break;
+
+      case "auth/operation-not-allowed":
+      default:
+        this.errorMessage = "Une erreur inconnue s'est produite, contactez le support";
+        break;
+    }
+
+  }
+
+  signup(loginForm: NgForm) {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(formValues.email, formValues.password)
-      .catch(function(error) {
-        console.log(
-          "ERROR - Firebase createUserWithEmailAndPassword() - " + error
-        );
-
-        this.errorMessage = error.message;
-        this.signUpInvalid = true;
-      })
-      .then(userCredential => this.addUser(userCredential, formValues))
-      .finally(function() {
+      .createUserWithEmailAndPassword(loginForm.value.email, loginForm.value.password)
+      .then(userCredential => {
+        this.addUser(userCredential, loginForm);
         this.router.navigate(["/home"]);
+      })
+      .catch(error => {
+        this.processSignupError(error, loginForm);
       });
   }
 
@@ -36,17 +61,17 @@ export class SignUpComponent {
     this.router.navigate(["/home"]);
   }
 
-  addUser(userCredential: firebase.auth.UserCredential, formValues) {
+  addUser(userCredential, loginForm: NgForm) {
     if (userCredential != null) {
       var db = firebase.firestore();
 
       console.log({ userCredential });
-      console.log({ formValues });
+      console.log({ loginForm });
 
       db.collection("users")
         .add({
-          firstname: formValues.firstname,
-          lastname: formValues.lastname,
+          firstname: loginForm.value.firstname,
+          lastname: loginForm.value.lastname,
           email: userCredential.user.email
         })
         .then(function(docRef) {
