@@ -15,35 +15,6 @@ export class SignUpComponent {
 
   constructor(private router: Router) {}
 
-  processSignupError(error, loginForm: NgForm) {
-    this.signUpInvalid = true;
-
-    console.log("ERROR - Firebase createUserWithEmailAndPassword() - " + error.code);
-
-    switch(error.code) {
-      case "auth/email-already-in-use":
-        loginForm.controls['email'].setErrors({'incorrect': true});
-        this.errorMessage = "L'email renseigné est déjà utilisé";
-        break;
-
-      case "auth/invalid-email":
-        loginForm.controls['email'].setErrors({'incorrect': true});
-        this.errorMessage = "L'email renseigné est invalide";
-        break;
-
-      case "auth/weak-password":
-        loginForm.controls['password'].setErrors({'incorrect': true});
-        this.errorMessage = "Le mot de passe renseigné n'est pas assez sécurisé";
-        break;
-
-      case "auth/operation-not-allowed":
-      default:
-        this.errorMessage = "Une erreur inconnue s'est produite, contactez le support";
-        break;
-    }
-
-  }
-
   signup(loginForm: NgForm) {
     firebase
       .auth()
@@ -57,8 +28,29 @@ export class SignUpComponent {
       });
   }
 
-  cancel() {
-    this.router.navigate(["/home"]);
+  processSignupError(error, loginForm: NgForm) {
+    this.signUpInvalid = true;
+
+    console.log("ERROR - Firebase createUserWithEmailAndPassword() - " + error.code);
+
+    switch(error.code) {
+      case "auth/email-already-in-use":
+        this.errorMessage = "L'email renseigné est déjà utilisé";
+        break;
+
+      case "auth/invalid-email":
+        this.errorMessage = "L'email renseigné est invalide";
+        break;
+
+      case "auth/weak-password":
+        this.errorMessage = "Le mot de passe renseigné n'est pas assez sécurisé";
+        break;
+
+      case "auth/operation-not-allowed":
+      default:
+        this.errorMessage = "Une erreur inconnue s'est produite, contactez le support";
+        break;
+    }
   }
 
   addUser(userCredential, loginForm: NgForm) {
@@ -81,5 +73,26 @@ export class SignUpComponent {
           console.error("Error adding document: ", error);
         });
     }
+  }
+
+  loginGoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      //var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
   }
 }

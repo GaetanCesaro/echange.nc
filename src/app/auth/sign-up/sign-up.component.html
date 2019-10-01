@@ -1,73 +1,90 @@
-<div class="container my-4 mx-auto">
-  <h1>Création du compte</h1>
-  <hr/>
-
+<div class="container signup-form my-4 mx-auto">
   <form #loginForm="ngForm" (ngSubmit)="signup(loginForm)" class="needs-validation">
-    <div class="form-row">
-      <div class="col-sm-6 col-md-6 mb-3">
-        <label for="lastname">Nom :</label>
-        <input (ngModel)="(lastname)" name="lastname" id="lastname" type="text" class="form-control" placeholder="Nom..." required/>
-        <div *ngIf="loginForm.controls.lastname?.invalid && (loginForm.controls.lastname?.touched || mouseoverLogin)" class="text-error">
-          Vérifiez votre nom
-        </div>
-      </div>
+    <h2>Création du compte</h2>
+
+    <p class="hint-text">Connectez vous avec votre compte favori ou votre adresse mail</p>
+  
+    <div class="social-btn">
+      <a href="#" class="btn btn-primary btn-lgn">
+        <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+        Facebook
+      </a>
+      <a href="#" class="btn btn-info btn-lgn">
+        <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+        Twitter
+        </a>
+      <a href="#" class="btn btn-danger btn-lgn">
+        <fa-icon [icon]="['fab', 'google']"></fa-icon>
+        Google
+      </a>
+    </div>
+  
+    <div class="or-seperator">
+      <b>Ou</b>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control input-lg" (ngModel)="(lastname)" name="lastname" id="lastname" type="text" placeholder="Nom" required/>
+    </div>
     
-      <div class="col-sm-6 col-md-6 mb-3">
-        <label for="firstname">Prénom :</label>
-        <input (ngModel)="(firstname)" name="firstname" id="firstname" type="text" class="form-control" placeholder="Prénom..." required/>
-        <div *ngIf="loginForm.controls.firstname?.invalid && (loginForm.controls.firstname?.touched || mouseoverLogin)" class="text-error">
-          Vérifiez votre prénom
-        </div>
-      </div>
+    <div class="form-group">
+      <input class="form-control input-lg" (ngModel)="(firstname)" name="firstname" id="firstname" type="text" placeholder="Prénom" required/>
     </div>
 
-    <div class="form-row">
-      <div class="col-md-12 mb-3">
-        <label for="email">Adresse Mail : </label>
-        <input (ngModel)="(email)" name="email" id="email" type="email" class="form-control" placeholder="Adresse Mail..." required>
-        <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.touched || mouseoverLogin)" class="text-error">
-          Vérifiez votre adresse email
-        </div>
-      </div>
+    <div class="form-group">
+      <input class="form-control input-lg" (ngModel)="(email)" name="email" id="email" type="email" placeholder="Adresse eMail" required>
     </div>
 
-    <div class="form-row">
-      <div class="col-sm-6 col-md-6 mb-3">
-        <label for="password">Mot de passe :</label>
-        <input (ngModel)="(password)" name="password" id="password" type="password" class="form-control" placeholder="Mot de passe..." required />
-        <div class="text-error" *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseoverLogin)">
-          Mot de passe incorrect
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-6 mb-3">
-        <label for="password">Répéter le mot de passe : </label>
-        <input (ngModel)="(passwordBis)" name="passwordBis" id="passwordBis" type="password" class="form-control" placeholder="Mot de passe..." required />
-        <div *ngIf="loginForm.controls.passwordBis?.invalid && (loginForm.controls.passwordBis?.touched || mouseoverLogin)">
-          Mot de passe incorrect
-        </div>
-      </div>
+    <div class="form-group">
+      <input class="form-control input-lg" (ngModel)="(password)" name="password" id="password" type="password" placeholder="Mot de passe" required />
     </div>
+
+    <div class="form-group">
+      <input class="form-control input-lg" (ngModel)="(passwordBis)" name="passwordBis" id="passwordBis" type="password" placeholder="Répétez le mot de passe" required />
+    </div>
+
+    <br/>
 
     <div class="form-row">
       <div class="col-6 mb-3">
-        <a [routerLink]="['/auth']" class="btn btn-primary">Déjà un compte ? Se connecter !</a>
+        <a [routerLink]="['/auth']" class="btn btn-secondary">J'ai déjà un compte</a>
       </div>
 
       <div class="col-6 mb-3">
         <span class="float-right">
-          <button type="button" (click)="cancel()" class="btn btn-default">Annuler</button>
           <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false">
-            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary" (click)="addUser()">Créer un compte</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success signup-btn" (click)="addUser()">Créer un compte</button>
           </span>
         </span>
+      </div>
+    </div>
+    
+    <br/>
+
+    <div>
+      <ul class="alert alert-danger">
+        <li *ngIf="loginForm.controls.lastname?.invalid && mouseoverLogin">
+          Vérifiez votre nom
+        </li>
+        <li *ngIf="loginForm.controls.firstname?.invalid && mouseoverLogin">
+          Vérifiez votre prénom
+        </li>
+        <li *ngIf="loginForm.controls.email?.invalid && mouseoverLogin">
+          Vérifiez votre adresse eMail
+        </li>
+        <li *ngIf="loginForm.controls.password?.invalid && mouseoverLogin">
+          Mot de passe incorrect
+        </li>
+        <li *ngIf="loginForm.controls.passwordBis?.invalid && mouseoverLogin">
+          Mot de passe répété incorrect    
+        </li>
+      </ul>
+      <div *ngIf="signUpInvalid" class="alert alert-danger">
+        {{errorMessage}}
       </div>
     </div>
   </form>
 
   <br/>
 
-  <div *ngIf="signUpInvalid" class="alert alert-danger">
-    {{errorMessage}}
-  </div>
 </div>
