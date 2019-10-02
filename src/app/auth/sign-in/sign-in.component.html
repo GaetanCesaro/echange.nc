@@ -1,44 +1,67 @@
-<div class="container my-4 mx-auto">
-  <h1>Connexion</h1>
-  <hr />
-
+<div class="container signup-form mx-auto">
   <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
-    <div class="form-group">
-      <label for="email">Adresse Mail :</label>
-      <em *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.touched || mouseoverLogin)">
-        Vérifiez votre adresse mail
-      </em>
-      <input (ngModel)="(email)" name="email" id="email" type="email" class="form-control"
-        placeholder="Adresse Mail..." required/>
+    <h2>Connexion</h2>
+
+    <p class="hint-text">Connectez vous avec votre compte favori ou votre adresse mail</p>
+
+    <div class="social-btn">
+      <a href="#" class="btn btn-primary btn-lgn">
+        <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+        Facebook
+      </a>
+      <a href="#" class="btn btn-info btn-lgn">
+        <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+        Twitter
+        </a>
+      <a href="#" class="btn btn-danger btn-lgn">
+        <fa-icon [icon]="['fab', 'google']"></fa-icon>
+        Google
+      </a>
+    </div>
+
+    <div class="or-seperator">
+      <b>Ou</b>
     </div>
 
     <div class="form-group">
-      <label for="password">Mot de passe :</label>
-      <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseoverLogin)">
-        Obligatoire
-      </em>
-      <input (ngModel)="(password)" name="password" id="password" type="password" class="form-control"
-        placeholder="Mot de passe..." required/>
+      <input class="form-control input-lg" (ngModel)="(email)" name="email" id="email" type="email" placeholder="Adresse eMail" required/>
     </div>
+
+    <div class="form-group">
+      <input class="form-control input-lg" (ngModel)="(password)" name="password" id="password" type="password" placeholder="Mot de passe" required/>
+    </div>
+
+    <br/>
+
+    <div class="form-row">
+        <div class="col-6 mb-3">
+          <a [routerLink]="['/sign-up']" class="btn btn-secondary">Créer un compte</a>
+        </div>
+
+        <div class="col-6 mb-3">
+          <span class="float-right">
+            <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false" >
+              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success signup-btn">Connexion</button>
+            </span>
+          </span>
+        </div>
+    </div>
+
+    <br/>
 
     <div>
-      <a [routerLink]="['/sign-up']" class="btn btn-primary">Créer un compte</a>
-
-      <span class="float-right">
-        <button type="button" (click)="cancel()" class="btn btn-default">
-          Annuler
-        </button>
-        <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false" >
-          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">
-            Connexion
-          </button>
-        </span>
-      </span>
-    </div>
+        <ul class="alert alert-danger">
+          <li *ngIf="loginForm.controls.email?.invalid && mouseoverLogin">
+            Vérifiez votre adresse eMail
+          </li>
+          <li *ngIf="loginForm.controls.password?.invalid && mouseoverLogin">
+            Mot de passe incorrect
+          </li>
+        </ul>
+        <div *ngIf="signInInvalid" class="alert alert-danger">
+          {{errorMessage}}
+        </div>
+      </div>
 
   </form>
-
-  <br/>
-  <div *ngIf="signInInvalid" class="alert alert-danger">Informations de connexion invalides</div>
 </div>
-

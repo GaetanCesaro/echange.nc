@@ -5,7 +5,7 @@ import * as firebase from 'firebase';
 @Component({
   selector: 'sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['../auth.component.scss']
 })
 export class SignInComponent {
 
@@ -25,10 +25,6 @@ export class SignInComponent {
     }).finally(function(){
       this.router.navigate(["/home"]);
     });
-  }
-
-  cancel() {
-    this.router.navigate(["/home"]);
   }
 
 }
