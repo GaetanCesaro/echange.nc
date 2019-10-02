@@ -6,7 +6,7 @@ import { appRoutes } from "src/routes";
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { EchangeAppComponent } from './echange-app.component';
@@ -26,6 +26,7 @@ import {
 } from './home/ad/index';
 
 import {
+  AuthService,
   AuthComponent,
   SignInComponent,
   SignUpComponent
@@ -55,6 +56,7 @@ import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.comp
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
+    AuthService,
     AdService
   ],
   bootstrap: [EchangeAppComponent]
@@ -62,6 +64,6 @@ import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.comp
 export class AppModule {
   constructor() {
     // Ajout des composants icones Font-Awesome utilisés
-    library.add(faUser, faSearch, faFacebook, faTwitter, faGoogle);
+    library.add(faSignOutAlt, faSignInAlt, faUser, faSearch, faFacebook, faTwitter, faGoogle);
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-social-sign-in',
@@ -9,33 +10,11 @@ import * as firebase from "firebase";
 })
 export class SocialSignInComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   loginGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-
-    firebase.auth().signInWithPopup(provider)
-      .then(result => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = (<firebase.auth.OAuthCredential>result.credential).accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        this.addUser(user);
-        this.router.navigate(["/home"]);
-      }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-        console.log(errorCode);
-        console.log(errorMessage);
-        console.log(email);
-        console.log(credential);
-      });
+    Promise.resolve(this.authService.signInGoogle())
+      .then(() => this.router.navigate(["/home"]));
   }
 
   addUser(user: firebase.User) {

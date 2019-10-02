@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import * as firebase from "firebase";
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  signedIn: boolean;
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
+    this.signedIn = this.authService.isSignedIn();
+    if (this.signedIn) {
+      this.router.navigate(["/home"]);
+    }
   }
 
 }
