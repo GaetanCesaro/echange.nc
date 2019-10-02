@@ -29,7 +29,8 @@ import {
   AuthComponent,
   SignInComponent,
   SignUpComponent
-} from './auth/index'
+} from './auth/index';
+import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.component'
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {
     AdComponent,
     SignInComponent,
     SignUpComponent,
-    AuthComponent
+    AuthComponent,
+    SocialSignInComponent
   ],
   imports: [
     BrowserModule,
