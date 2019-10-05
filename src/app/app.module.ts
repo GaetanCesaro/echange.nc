@@ -9,6 +9,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faSearch, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
+import { ToastrModule } from 'ngx-toastr'
+
 import { EchangeAppComponent } from './echange-app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -53,6 +55,7 @@ import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.comp
     BrowserModule,
     FormsModule,
     FontAwesomeModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

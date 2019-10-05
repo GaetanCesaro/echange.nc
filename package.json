@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~7.1.0",
+    "@angular/animations": "^7.1.4",
     "@angular/common": "~7.1.0",
     "@angular/compiler": "~7.1.0",
     "@angular/core": "~7.1.0",
@@ -25,10 +25,13 @@
     "@fortawesome/free-brands-svg-icons": "^5.5.0",
     "@fortawesome/free-regular-svg-icons": "^5.5.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "ajv": "^6.10.2",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "firebase": "^6.3.1",
     "jquery": "^3.4.1",
+    "ngx-toastr": "^11.1.0",
+    "popper.js": "^1.15.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
