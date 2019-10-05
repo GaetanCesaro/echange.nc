@@ -18,11 +18,11 @@
 
     <div class="navbar-header navbar-right">
       <div class="navbar-nav">
-        <a *ngIf="!authService.isSignedIn()" class="nav-item nav-link" [routerLink]="['/auth']">
+        <a *ngIf="!isSignedIn()" class="nav-item nav-link" [routerLink]="['/auth']">
           <fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon>
           Connexion
         </a>
-        <a *ngIf="authService.isSignedIn()" class="nav-item nav-link" (click)="signOut()" >
+        <a *ngIf="isSignedIn()" class="nav-item nav-link" (click)="signOut()" >
           <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
           Déconnexion
         </a>

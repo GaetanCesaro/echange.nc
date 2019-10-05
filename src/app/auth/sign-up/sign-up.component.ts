@@ -9,6 +9,12 @@ import * as firebase from "firebase";
   styleUrls: ["../auth.component.scss"]
 })
 export class SignUpComponent {
+  lastname: string;
+  firstname: string;
+  email: string;
+  password: string;
+  passwordBis: string;
+
   mouseoverLogin: boolean;
   signUpInvalid = false;
   errorMessage: string;

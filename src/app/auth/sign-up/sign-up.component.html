@@ -3,9 +3,9 @@
     <h2>Création du compte</h2>
 
     <p class="hint-text">Connectez vous avec votre compte favori ou votre adresse mail</p>
-  
+
     <app-social-sign-in></app-social-sign-in>
-  
+
     <div class="or-seperator">
       <b>Ou</b>
     </div>
@@ -13,7 +13,7 @@
     <div class="form-group">
       <input class="form-control input-lg" (ngModel)="(lastname)" name="lastname" id="lastname" type="text" placeholder="Nom" required/>
     </div>
-    
+
     <div class="form-group">
       <input class="form-control input-lg" (ngModel)="(firstname)" name="firstname" id="firstname" type="text" placeholder="Prénom" required/>
     </div>
@@ -40,12 +40,12 @@
       <div class="col-6 mb-3">
         <span class="float-right">
           <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false">
-            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success signup-btn" (click)="addUser()">Créer un compte</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success signup-btn">Créer un compte</button>
           </span>
         </span>
       </div>
     </div>
-    
+
     <br/>
 
     <div>
@@ -63,7 +63,7 @@
           Mot de passe incorrect
         </li>
         <li *ngIf="loginForm.controls.passwordBis?.invalid && mouseoverLogin">
-          Mot de passe répété incorrect    
+          Mot de passe répété incorrect
         </li>
       </ul>
       <div *ngIf="signUpInvalid" class="alert alert-danger">
