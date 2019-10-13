@@ -21,4 +21,24 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  processAuthErrors(error): string {
+    switch(error.code) {
+      case "auth/email-already-in-use":
+        return "L'email renseigné est déjà utilisé";
+
+      case "auth/invalid-email":
+        return "L'email renseigné est invalide";
+
+      case "auth/weak-password":
+        return "Le mot de passe renseigné n'est pas assez sécurisé";
+
+      case "auth/wrong-password":
+        return"Le mot de passe renseigné n'est pas valide";
+
+      case "auth/operation-not-allowed":
+      default:
+        return "Une erreur inconnue s'est produite, contactez le support";
+    }
+  }
+
 }

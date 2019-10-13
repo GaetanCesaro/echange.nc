@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
+import { AuthComponent } from '../auth.component';
 
 @Component({
   selector: "sign-up",
@@ -13,42 +14,19 @@ export class SignUpComponent {
   signUpInvalid = false;
   errorMessage: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authComponent: AuthComponent) {}
 
-  signup(loginForm: NgForm) {
+  singUp(loginForm: NgForm) {
     firebase.auth().createUserWithEmailAndPassword(loginForm.value.email, loginForm.value.password)
       .then(userCredential => {
         this.addUser(userCredential, loginForm);
         this.router.navigate(["/home"]);
       })
       .catch(error => {
-        this.processSignupError(error, loginForm);
+        this.signUpInvalid = true;
+        console.log("ERROR - Firebase createUserWithEmailAndPassword() - " + error.code);
+        this.errorMessage = this.authComponent.processAuthErrors(error);
       });
-  }
-
-  processSignupError(error, loginForm: NgForm) {
-    this.signUpInvalid = true;
-
-    console.log("ERROR - Firebase createUserWithEmailAndPassword() - " + error.code);
-
-    switch(error.code) {
-      case "auth/email-already-in-use":
-        this.errorMessage = "L'email renseigné est déjà utilisé";
-        break;
-
-      case "auth/invalid-email":
-        this.errorMessage = "L'email renseigné est invalide";
-        break;
-
-      case "auth/weak-password":
-        this.errorMessage = "Le mot de passe renseigné n'est pas assez sécurisé";
-        break;
-
-      case "auth/operation-not-allowed":
-      default:
-        this.errorMessage = "Une erreur inconnue s'est produite, contactez le support";
-        break;
-    }
   }
 
   addUser(userCredential, loginForm: NgForm) {

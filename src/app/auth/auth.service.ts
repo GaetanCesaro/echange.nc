@@ -49,8 +49,6 @@ export class AuthService {
         console.log(errorMessage);
         console.log(email);
         console.log(credential);
-
-        return null;
       });
   }
 
