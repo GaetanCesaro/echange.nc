@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import { AuthComponent } from '../auth.component';
+import { User } from '../models/user.model';
 
 @Component({
   selector: "sign-up",
@@ -42,14 +43,16 @@ export class SignUpComponent {
       console.log({ userCredential });
       console.log({ loginForm });
 
+      let user: User = {
+        firstName: loginForm.value.firstname,
+        lastName: loginForm.value.lastname,
+        displayName: loginForm.value.firstname + " " + loginForm.value.lastname,
+        email: userCredential.user.email,
+        photoUrl: ""
+      }
+
       db.collection("users").doc(userCredential.user.email)
-      .set({
-          firstName: loginForm.value.firstname,
-          lastName: loginForm.value.lastname,
-          displayName: loginForm.value.firstname + " " + loginForm.value.lastname,
-          email: userCredential.user.email,
-          photoUrl: ""
-        })
+      .set(user)
         .then(function() {
           console.log("Signup and login success !");
         })
