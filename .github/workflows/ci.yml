@@ -36,5 +36,5 @@ jobs:
         with:
           args: deploy --only hosting:prod
         env:
-          PROJECTID: echangenc
+          PROJECT_ID: echangenc
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
