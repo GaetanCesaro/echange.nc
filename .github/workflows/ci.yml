@@ -34,6 +34,7 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --project echangenc --token $FIREBASE_TOKEN --only hosting:prod
+          args: deploy --only hosting:prod
         env:
+          PROJECTID: echangenc
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
