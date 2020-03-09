@@ -1,50 +1,26 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, OnChanges, OnInit } from "@angular/core";
+import { Apollo } from "apollo-angular";
+import { Observable } from "rxjs";
 
-import gql from 'graphql-tag';
-
-import { AdService } from '../ad.service';
-import { Ad } from '../ad.model';
-import { Post, Query } from '../graphql.types';
+import { AdService } from "../ad.service";
+import { Ad } from "../ad.model";
+import { Post, Query } from "../graphql.types";
 
 @Component({
-  selector: 'ad-list',
-  templateUrl: './ad-list.component.html',
-  styleUrls: ['./ad-list.component.css']
+  selector: "ad-list",
+  templateUrl: "./ad-list.component.html",
+  styleUrls: ["./ad-list.component.css"]
 })
 export class AdListComponent implements OnChanges, OnInit {
-
   filter: string;
   ads: Ad[];
   posts: Observable<Post[]>;
 
-  constructor(private adService: AdService, private apollo: Apollo) { }
+  constructor(private adService: AdService) {}
 
   ngOnInit() {
     // Recherche des posts via GraphQL
-    this.posts = this.apollo.watchQuery<Query>({
-      query: gql`
-        query findAllPosts {
-          findAllPosts {
-            id
-            title
-            description
-            price
-            owner {
-              id
-              firstName
-              lastName
-            }
-          }
-        }
-      `
-    })
-      .valueChanges
-      .pipe(
-        map(result => result.data.findAllPosts)
-      );
+    this.posts = this.adService.findAllPosts();
 
     // Initialisation du filtre
     this.getAdList(this.filter);
@@ -59,5 +35,4 @@ export class AdListComponent implements OnChanges, OnInit {
     console.log("Ads : ", this.ads);
     this.posts.subscribe(val => console.log("Posts : ", val));
   }
-
 }
