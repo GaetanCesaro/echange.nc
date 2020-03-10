@@ -3,10 +3,8 @@ import * as firebase from 'firebase';
 
 @Component({
   selector: 'echange-app-root',
-  template: `
-    <nav-bar></nav-bar>
-    <router-outlet></router-outlet>
-  `
+  templateUrl: './echange-app.component.html',
+  styleUrls: ['./echange-app.component.scss']
 })
 export class EchangeAppComponent {
   title = 'Echange.nc';
