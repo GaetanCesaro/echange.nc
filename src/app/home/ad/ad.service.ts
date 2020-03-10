@@ -5,8 +5,7 @@ import { map } from "rxjs/operators";
 import { Apollo } from "apollo-angular";
 import gql from "graphql-tag";
 
-import { Ad } from "./ad.model";
-import { Post, Query } from "./graphql.types";
+import { Ad, Query } from "./ad.model";
 
 @Injectable({
   providedIn: "root"
@@ -14,16 +13,17 @@ import { Post, Query } from "./graphql.types";
 export class AdService {
   constructor(private apollo: Apollo) {}
 
-  find(filter: string): Ad[] {
-    return ads;
+  findAds(filter: string): Observable<Ad[]> {
+    // TODO - Apply filter
+    return this.findAllAds();
   }
 
-  findAllPosts(): Observable<Post[]> {
+  findAllAds(): Observable<Ad[]> {
     return this.apollo
       .watchQuery<Query>({
         query: gql`
-          query findAllPosts {
-            findAllPosts {
+          query findAllAds {
+            findAllAds {
               id
               title
               description
@@ -37,10 +37,11 @@ export class AdService {
           }
         `
       })
-      .valueChanges.pipe(map(result => result.data.findAllPosts));
+      .valueChanges.pipe(map(result => result.data.findAllAds));
   }
 }
 
+/*
 const ads: Ad[] = [
   {
     id: 1,
@@ -83,3 +84,4 @@ const ads: Ad[] = [
     image: "scie_circulaire.jpg"
   }
 ];
+*/

@@ -1,7 +1,9 @@
 <div class="card">
-  <img src="{{imageBasePath}}{{ad.image}}" class="card-img-top" alt="...">
+  <img *ngIf="!ad.image" src="{{imageBasePath}}default_ad.png" class="card-img-top" alt="...">
+  <img *ngIf="ad.image" src="{{imageBasePath}}{{ad.image}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{ad.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">par {{ad.owner.firstName}} {{ad.owner.lastName}}</h6>
     <p class="card-text">{{ad.description}}</p>
     <a routerLink="/ad/{{ad.id}}" class="btn btn-primary">Consulter</a>
   </div>

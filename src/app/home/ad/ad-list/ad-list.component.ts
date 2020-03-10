@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 
 import { AdService } from "../ad.service";
 import { Ad } from "../ad.model";
-import { Post, Query } from "../graphql.types";
 
 @Component({
   selector: "ad-list",
@@ -13,14 +12,13 @@ import { Post, Query } from "../graphql.types";
 })
 export class AdListComponent implements OnChanges, OnInit {
   filter: string;
-  ads: Ad[];
-  posts: Observable<Post[]>;
+  ads: Observable<Ad[]>;
 
   constructor(private adService: AdService) {}
 
   ngOnInit() {
     // Recherche des posts via GraphQL
-    this.posts = this.adService.findAllPosts();
+    this.ads = this.adService.findAllAds();
 
     // Initialisation du filtre
     this.getAdList(this.filter);
@@ -31,8 +29,7 @@ export class AdListComponent implements OnChanges, OnInit {
   }
 
   getAdList(filter: string) {
-    this.ads = this.adService.find(filter);
-    console.log("Ads : ", this.ads);
-    this.posts.subscribe(val => console.log("Posts : ", val));
+    this.ads = this.adService.findAds(filter);
+    this.ads.subscribe(val => console.log("Ads: ", val));
   }
 }
