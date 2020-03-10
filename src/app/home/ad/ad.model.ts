@@ -2,8 +2,9 @@ export interface Ad {
   id: number;
   title: string;
   description: string;
-  image: string;
   price: number;
+  imageUrl: string;
+  category: string;
   owner: User;
 }
 

@@ -2,7 +2,7 @@
     max-height: 200px;
     max-width: 100%;
     min-height: 100px;
-    -o-object-fit: contain; // cover
-    object-fit: contain; // cover
+    -o-object-fit: cover; // cover | contain
+    object-fit: cover; // cover | contain
     overflow: hidden;
 }
