@@ -18,6 +18,8 @@ import { ToastrModule } from 'ngx-toastr'
 import { EchangeAppComponent } from './echange-app.component';
 import { HomeComponent } from './home/home.component';
 
+import { environment } from './../environments/environment';
+
 import {
   NavbarComponent,
   Error404Component,
@@ -81,7 +83,7 @@ export class AppModule {
 
     // Connexion au serveur GraphQL
     apollo.create({
-      link: httpLink.create({ uri: 'http://localhost:8080/graphql' }),
+      link: httpLink.create({ uri: environment.graphqlHostname + "/graphql" }),
       cache: new InMemoryCache()
     });
   }
