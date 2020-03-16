@@ -1,5 +1,10 @@
 @import 'variables';
 
+.navbar {
+    z-index: 10;
+    background: #F0F0F0;
+}
+
 .nav.navbar-nav {
     font-size: 15px;
 }

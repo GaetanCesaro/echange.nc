@@ -35,3 +35,7 @@ $default-padding: 1rem;
 
 $x-break-point: 1200px;
 $y-break-point: 630px;
+
+$fixed-header-height-default: 53px;
+$fixed-header-height-expanded: 153px;
+$fixed-header-height: $fixed-header-height-default;

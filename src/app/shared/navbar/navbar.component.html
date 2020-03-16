@@ -1,32 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-light border-bottom">
-  <a class="navbar-brand" [routerLink]="['/']">
-    <img class="d-inline-block align-top mr-2" src="/assets/img/brand-logo.png" width="30" height="30" alt="">
-    Echange.nc
-  </a>
+<nav class="navbar navbar-default navbar-expand-lg navbar-light border-bottom fixed-top">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img class="d-inline-block align-top mr-2" src="/assets/img/brand-logo.png" width="30" height="30" alt="">
+      Echange.nc
+    </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <div class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <a class="nav-item nav-link" [routerLink]="['/proposer']" routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact:true}">Proposer</a>
-      <a class="nav-item nav-link" [routerLink]="['/rechercher']" routerLinkActive="active">Rechercher</a>
-    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <a class="nav-item nav-link" [routerLink]="['/proposer']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Proposer</a>
+        <a class="nav-item nav-link" [routerLink]="['/rechercher']" routerLinkActive="active">Rechercher</a>
+      </div>
 
-    <div class="navbar-header navbar-right">
-      <div class="navbar-nav">
-        <a *ngIf="!isSignedIn()" class="nav-item nav-link" [routerLink]="['/auth']">
-          <fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon>
-          Connexion
-        </a>
-        <a *ngIf="isSignedIn()" class="nav-item nav-link" (click)="signOut()" >
-          <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
-          Déconnexion
-        </a>
-        <!--a class="nav-item nav-link" *ngIf="authService.isAuthenticated()" [routerLink]="['/user/profile']">Welcome {{authService.currentUser.firstName}}</a-->
+      <div class="navbar-header navbar-right">
+        <div class="navbar-nav">
+          <a *ngIf="!isSignedIn()" class="nav-item nav-link" [routerLink]="['/auth']">
+            <fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon>
+            Connexion
+          </a>
+          <a *ngIf="isSignedIn()" class="nav-item nav-link" (click)="signOut()" >
+            <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
+            Déconnexion
+          </a>
+          <!--a class="nav-item nav-link" *ngIf="authService.isAuthenticated()" [routerLink]="['/user/profile']">Welcome {{authService.currentUser.firstName}}</a-->
+        </div>
       </div>
     </div>
   </div>
