@@ -3,6 +3,7 @@ import { Error404Component } from "./app/shared/errors/404.component";
 import { HomeComponent } from './app/home/home.component';
 import { AuthComponent } from './app/auth/auth.component';
 import { SignUpComponent } from './app/auth';
+import { AdCreateComponent } from './app/ad/ad-create/ad-create.component';
 /*
 import {
     EventsListComponent,
@@ -48,6 +49,10 @@ export const appRoutes: Routes = [
     {
       path: "sign-up",
       component: SignUpComponent
+    },
+    {
+      path: "ad/create",
+      component: AdCreateComponent
     },
     { path: "404", component: Error404Component },
     { path: "", redirectTo: "/home", pathMatch: "full" }

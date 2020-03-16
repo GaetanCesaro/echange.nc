@@ -29,6 +29,7 @@ import {
 import {
   AdListComponent,
   AdDetailsComponent,
+  AdCreateComponent,
   AdService
 } from './ad/index';
 
@@ -36,10 +37,9 @@ import {
   AuthService,
   AuthComponent,
   SignInComponent,
-  SignUpComponent
+  SignUpComponent,
+  SocialSignInComponent
 } from './auth/index';
-import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.component'
-
 
 @NgModule({
   declarations: [
@@ -53,7 +53,8 @@ import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.comp
     SignInComponent,
     SignUpComponent,
     AuthComponent,
-    SocialSignInComponent
+    SocialSignInComponent,
+    AdCreateComponent
   ],
   imports: [
     BrowserModule,

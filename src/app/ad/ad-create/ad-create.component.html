@@ -1,0 +1,69 @@
+<div class="container custom-form mx-auto">
+    <form #adForm="ngForm" (ngSubmit)="createAd(adForm)" autocomplete="off">
+        <h2>Ajout d'une annonce</h2>
+  
+        <p class="hint-text">Complétez les informations ci-dessous</p>
+
+        <div class="form-group">
+            <label for="category">Catégorie</label>
+            <select class="form-control" id="category">
+                <option *ngFor="let category of categories" [value]="category"> <!--[attr.selected]="passenger.Title==title.Text ? true : null"-->
+                    {{category}}
+                </option>
+            </select>
+        </div>
+  
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input class="form-control" (ngModel)="(title)" name="title" id="title" type="text" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description de l'annonce</label>
+            <textarea class="form-control" (ngModel)="(description)" name="description" id="description" rows="3" required></textarea>
+        </div>
+  
+        <div class="form-group">
+            <label for="description">Prix</label>
+            <input class="form-control" (ngModel)="(price)" name="price" id="price" type="number" required/>
+        </div>
+  
+        <br/>
+  
+        <div class="form-row">
+            <div class="col-6 mb-3">
+                <a [routerLink]="['/home']" class="btn btn-secondary">Annuler</a>
+            </div>
+
+            <div class="col-6 mb-3">
+            <span class="float-right">
+                <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false" >
+                    <button type="submit" [disabled]="!adForm.valid" class="btn btn-success">Créer l'annonce</button>
+                </span>
+            </span>
+            </div>
+        </div>
+  
+        <br/>
+
+        <div>
+            <ul class="alert alert-danger">
+                <li *ngIf="adForm.controls.category?.invalid && mouseoverLogin">
+                    Catégorie obligatoire
+                </li>
+                <li *ngIf="adForm.controls.title?.invalid && mouseoverLogin">
+                    Titre obligatoire
+                </li>
+                <li *ngIf="adForm.controls.description?.invalid && mouseoverLogin">
+                    Description obligatoire
+                </li>
+                <li *ngIf="adForm.controls.price?.invalid && mouseoverLogin">
+                    Prix obligatoire
+                </li>
+            </ul>
+            <div *ngIf="adCreateInvalid" class="alert alert-danger">
+                {{errorMessage}}
+            </div>
+        </div>
+    </form>
+  </div>

@@ -1,4 +1,4 @@
-<div class="container signup-form mx-auto">
+<div class="container custom-form mx-auto">
   <form #loginForm="ngForm" (ngSubmit)="signIn(loginForm)" autocomplete="off">
     <h2>Connexion</h2>
 
@@ -28,7 +28,7 @@
         <div class="col-6 mb-3">
           <span class="float-right">
             <span (mouseenter)="mouseoverLogin = true" (mouseleave)="mouseoverLogin = false" >
-              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success signup-btn">Connexion</button>
+              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success custom-btn">Connexion</button>
             </span>
           </span>
         </div>
