@@ -29,9 +29,8 @@ import {
 import {
   AdListComponent,
   AdDetailsComponent,
-  AdComponent,
   AdService
-} from './home/ad/index';
+} from './ad/index';
 
 import {
   AuthService,
@@ -51,7 +50,6 @@ import { SocialSignInComponent } from './auth/social-sign-in/social-sign-in.comp
     SearchBarComponent,
     AdListComponent,
     AdDetailsComponent,
-    AdComponent,
     SignInComponent,
     SignUpComponent,
     AuthComponent,
