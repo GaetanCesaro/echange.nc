@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import * as firebase from "firebase";
 import { AuthService } from '../auth.service';
+
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-social-sign-in',

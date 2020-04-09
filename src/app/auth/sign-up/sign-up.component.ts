@@ -1,9 +1,11 @@
 import { Component } from "@angular/core";
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
-import * as firebase from "firebase";
 import { AuthComponent } from '../auth.component';
 import { User } from '../models/user.model';
+
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: "sign-up",
