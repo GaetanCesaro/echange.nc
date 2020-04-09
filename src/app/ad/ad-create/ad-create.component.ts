@@ -12,11 +12,6 @@ import { Ad } from '../ad.model';
 export class AdCreateComponent implements OnInit {
 
   categories: string[];
-  
-  category: string;
-  title: string;
-  description: string;
-  price: number;
 
   mouseoverLogin: boolean;
   adCreateInvalid: boolean = false;
@@ -29,26 +24,34 @@ export class AdCreateComponent implements OnInit {
   }
 
   createAd(adForm: NgForm) {
-    console.log({adForm})
+    if (adForm.valid) {
+      console.log(adForm.form.value)
 
-    let ad : Ad = {
-      category: this.category,
-      title: this.title,
-      description: this.description,
-      price: this.price,
-      imageUrl: '',
-      owner: null
-    };
+      let ad: Ad = adForm.form.value;
 
-    this.adService.createAd(ad)
-      .then(() => {
-        console.log("coucou");
-      })
-      .catch(error => {
-        this.adCreateInvalid = true;
-        console.log("ERROR - createAd() - " + error.code);
-        this.errorMessage = error.errorMessage;
-      });
+      this.adService.newAd(ad)
+        .subscribe(
+          {
+            next(data) {
+              console.log('Données retournées', data);
+            },
+            error(error) {
+              console.log('Erreur lors de l\'ajout de l\'annonce', error);
+              this.adCreateInvalid = true;
+              console.log("ERROR - createAd() - " + error.code);
+              this.errorMessage = error.errorMessage;
+            },
+            complete() { 
+              console.log("Annonce créée !");
+              //this.backToHomepage(); 
+            }
+          }
+        )
+    }
+  }
+
+  backToHomepage() {
+    this.router.navigate(["/home"]);
   }
 
 }

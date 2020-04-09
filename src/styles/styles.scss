@@ -97,9 +97,12 @@ div .custom-form {
   transition: all 0.4s;
 }
 
-.custom-form .form-control, .btn {
-  border-radius: 50px;
-  outline: none !important;
+.custom-form .form-control {
+    outline: none !important;
+}
+
+.btn {
+    border-radius: 50px;
 }
 
 .custom-form .form-control {

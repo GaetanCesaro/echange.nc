@@ -41,8 +41,11 @@
 }
 
 .form-control, .btn {
-    border-radius: 50px;
     outline: none !important;
+}
+
+.btn {
+    border-radius: 50px;
 }
 
 .form-control {

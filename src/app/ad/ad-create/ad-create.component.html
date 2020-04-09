@@ -6,8 +6,8 @@
 
         <div class="form-group">
             <label for="category">Catégorie</label>
-            <select class="form-control" id="category">
-                <option *ngFor="let category of categories" [value]="category"> <!--[attr.selected]="passenger.Title==title.Text ? true : null"-->
+            <select class="form-control" id="category" (ngModel)="(category)" name="category">
+                <option *ngFor="let category of categories"> <!--[attr.selected]="passenger.Title==title.Text ? true : null"-->
                     {{category}}
                 </option>
             </select>
