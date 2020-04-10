@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { AdService } from '../ad.service';
 import { Ad } from '../ad.model';
 
@@ -12,10 +12,14 @@ import { Ad } from '../ad.model';
 export class AdCreateComponent implements OnInit {
 
   categories: string[];
-
   mouseoverLogin: boolean;
   adCreateInvalid: boolean = false;
   errorMessage: string = "";
+
+  inputCategory: NgModel;
+  inputTitle: NgModel;
+  inputDescription: NgModel;
+  inputPrice: NgModel;
 
   constructor(private router: Router, private adService: AdService) { }
 

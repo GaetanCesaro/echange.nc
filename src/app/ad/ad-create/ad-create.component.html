@@ -6,7 +6,7 @@
 
         <div class="form-group">
             <label for="category">Catégorie</label>
-            <select class="form-control" id="category" (ngModel)="(category)" name="category">
+            <select class="form-control" id="category" [(ngModel)]="inputCategory" name="category">
                 <option *ngFor="let category of categories"> <!--[attr.selected]="passenger.Title==title.Text ? true : null"-->
                     {{category}}
                 </option>
@@ -15,17 +15,17 @@
   
         <div class="form-group">
             <label for="title">Titre</label>
-            <input class="form-control" (ngModel)="(title)" name="title" id="title" type="text" required/>
+            <input class="form-control" [(ngModel)]="inputTitle" name="title" id="title" type="text" required/>
         </div>
 
         <div class="form-group">
             <label for="description">Description de l'annonce</label>
-            <textarea class="form-control" (ngModel)="(description)" name="description" id="description" rows="3" required></textarea>
+            <textarea class="form-control" [(ngModel)]="inputDescription" name="description" id="description" rows="3" required></textarea>
         </div>
   
         <div class="form-group">
             <label for="description">Prix</label>
-            <input class="form-control" (ngModel)="(price)" name="price" id="price" type="number" required/>
+            <input class="form-control" [(ngModel)]="inputPrice" name="price" id="price" type="number" required/>
         </div>
   
         <br/>
